@@ -2,11 +2,12 @@
 //  ViewController.m
 //  ZTNavigationMenuDemo
 //
-//  Created by Cer on 2018/9/27.
+//  Created by Cer on 2018/10/8.
 //  Copyright © 2018年 Cer. All rights reserved.
 //
 
 #import "ViewController.h"
+#import "RootViewController.h"
 
 @interface ViewController ()
 
@@ -14,16 +15,23 @@
 
 @implementation ViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+    [self setTitle:@"首页"];
+    
+    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"push" style:UIBarButtonItemStylePlain target:self action:@selector(push)];
+    [[self navigationItem] setRightBarButtonItem:item animated:NO];
+    
+    return;
 }
 
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)push
+{
+    RootViewController *VC = [[RootViewController alloc] init];
+    [[self navigationController] pushViewController:VC animated:YES];
+    
+    return;
 }
-
 
 @end
