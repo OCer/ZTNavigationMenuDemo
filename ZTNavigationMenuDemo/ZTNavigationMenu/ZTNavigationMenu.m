@@ -11,16 +11,18 @@
 #import "ZTPrefixHeader.pch"
 #import <objc/runtime.h>
 
-#define kMenuWidthMin 140
-#define kMenuWidthMax 200
-#define kCellHeightMin 30
-#define kCellHeightMax 100
-#define kContentHeightMin 100
-#define kContentHeightMax 350
-#define kEffectAlphaMin 0.1f
-#define kEffectAlphaMax 1.0f
-#define kLayoutGuideBottomMin 1
-#define kLayoutGuideBottomMax 150
+#define kZTMenuWidthMin 140
+#define kZTMenuWidthMax 200
+#define kZTCellHeightMin 30
+#define kZTCellHeightMax 100
+#define kZTContentHeightMin 100
+#define kZTContentHeightMax 350
+#define kZTEffectAlphaMin 0.1f
+#define kZTEffectAlphaMax 1.0f
+#define kZTLayoutGuideBottomMin 1
+#define kZTLayoutGuideBottomMax 150
+#define kZTDefaultTitleFont [UIFont boldSystemFontOfSize:18]
+#define kZTDefaultTitleColor kZTColorFromRGB(0x333333)
 
 @interface ZTNavigationMenu ()<UICollectionViewDataSource, UICollectionViewDelegate, UIGestureRecognizerDelegate>
 
@@ -63,6 +65,8 @@
 {
     if (self = [super init])
     {
+        _titleFont = kZTDefaultTitleFont;
+        _titleColor = kZTDefaultTitleColor;
         _effectStyle = UIBlurEffectStyleLight;
         _showBackgroundView = YES;
         _showEffectView = NO;
@@ -242,8 +246,8 @@
 {
     UILabel *titleLabel = [[UILabel alloc] init];
     [titleLabel setBackgroundColor:[UIColor clearColor]];
-    [titleLabel setFont:[UIFont boldSystemFontOfSize:18]];
-    [titleLabel setTextColor:UIColorFromRGB(0x333333)];
+    [titleLabel setFont:[self titleFont]];
+    [titleLabel setTextColor:[self titleColor]];
     [titleLabel setTextAlignment:NSTextAlignmentCenter];
     [self addSubview:titleLabel];
     [self setTitleLabel:titleLabel];
@@ -400,7 +404,7 @@
     }
     
     NSIndexSet *indexSet = [[NSIndexSet alloc] initWithIndex:0];
-    kWeakSelf(weakSelf);
+    kZTWeakSelf(weakSelf);
     [[self collectionView] performBatchUpdates:^{
         if (i == -1)
         {
@@ -417,6 +421,32 @@
 }
 
 #pragma mark - 重写方法
+- (void)setTitleFont:(UIFont *)titleFont
+{
+    if ((titleFont == nil) || (![titleFont isKindOfClass:[UIFont class]]))
+    {
+        titleFont = kZTDefaultTitleFont;
+    }
+    
+    _titleFont = titleFont;
+    [[self titleLabel] setFont:titleFont];
+    
+    return;
+}
+
+- (void)setTitleColor:(UIColor *)titleColor
+{
+    if ((titleColor == nil) || (![titleColor isKindOfClass:[UIColor class]]))
+    {
+        titleColor = kZTDefaultTitleColor;
+    }
+    
+    _titleColor = titleColor;
+    [[self titleLabel] setTextColor:titleColor];
+    
+    return;
+}
+
 - (void)setLayoutGuideBottom:(int)layoutGuideBottom
 {
     if (layoutGuideBottom == [self layoutGuideBottom])
@@ -424,7 +454,7 @@
         return;
     }
     
-    if (layoutGuideBottom < kLayoutGuideBottomMin || layoutGuideBottom > kLayoutGuideBottomMax)
+    if (layoutGuideBottom < kZTLayoutGuideBottomMin || layoutGuideBottom > kZTLayoutGuideBottomMax)
     {
         _layoutGuideBottom = 0;
     }
@@ -473,13 +503,13 @@
         return;
     }
     
-    if (contentHeight < kContentHeightMin)
+    if (contentHeight < kZTContentHeightMin)
     {
-        contentHeight = kContentHeightMin;
+        contentHeight = kZTContentHeightMin;
     }
-    else if (contentHeight > kContentHeightMax)
+    else if (contentHeight > kZTContentHeightMax)
     {
-        contentHeight = kContentHeightMax;
+        contentHeight = kZTContentHeightMax;
     }
     
     _contentHeight = contentHeight;
@@ -505,13 +535,13 @@
         return;
     }
     
-    if (cellHeight < kCellHeightMin)
+    if (cellHeight < kZTCellHeightMin)
     {
-        cellHeight = kCellHeightMin;
+        cellHeight = kZTCellHeightMin;
     }
-    else if (cellHeight > kCellHeightMax)
+    else if (cellHeight > kZTCellHeightMax)
     {
-        cellHeight = kCellHeightMax;
+        cellHeight = kZTCellHeightMax;
     }
     
     _cellHeight = cellHeight;
@@ -531,13 +561,13 @@
         return;
     }
     
-    if (menuWidth < kMenuWidthMin)
+    if (menuWidth < kZTMenuWidthMin)
     {
-        menuWidth = kMenuWidthMin;
+        menuWidth = kZTMenuWidthMin;
     }
-    else if (menuWidth > kMenuWidthMax)
+    else if (menuWidth > kZTMenuWidthMax)
     {
-        menuWidth = kMenuWidthMax;
+        menuWidth = kZTMenuWidthMax;
     }
     
     _menuWidth = menuWidth;
@@ -579,13 +609,13 @@
         return;
     }
     
-    if (effectAlpha < kEffectAlphaMin)
+    if (effectAlpha < kZTEffectAlphaMin)
     {
-        effectAlpha = kEffectAlphaMin;
+        effectAlpha = kZTEffectAlphaMin;
     }
-    else if (effectAlpha > kEffectAlphaMax)
+    else if (effectAlpha > kZTEffectAlphaMax)
     {
-        effectAlpha = kEffectAlphaMax;
+        effectAlpha = kZTEffectAlphaMax;
     }
     
     _effectAlpha = effectAlpha;
@@ -780,7 +810,7 @@
                 }
                 else
                 {
-                    [backgroundView setBackgroundColor:kRGBA(0, 0, 0, 0.5f)];
+                    [backgroundView setBackgroundColor:kZTRGBA(0, 0, 0, 0.5f)];
                 }
             }
             
@@ -804,7 +834,7 @@
 #pragma mark - UICollectionViewDataSource && UICollectionViewDelegate
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    return CGSizeMake(kScreenWidth, [self cellHeight]);
+    return CGSizeMake(kZTScreenWidth, [self cellHeight]);
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section

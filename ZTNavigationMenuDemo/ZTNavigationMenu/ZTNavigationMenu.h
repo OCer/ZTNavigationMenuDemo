@@ -13,6 +13,8 @@ typedef void(^ZTNavigationMenuBlock)(NSArray<NSString *> *data, int index);
 @interface ZTNavigationMenu : UIControl
 
 @property(nonatomic, strong) NSArray<NSString *> *data;
+@property(nonatomic, strong) UIFont *titleFont;
+@property(nonatomic, strong) UIColor *titleColor; 
 @property(nonatomic, assign, readonly) int index;
 @property(nonatomic, assign) int menuWidth;
 @property(nonatomic, assign) int cellHeight;

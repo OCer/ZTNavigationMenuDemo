@@ -12,14 +12,14 @@
 #ifdef __OBJC__
 #import "Masonry.h"
 
-#define UIColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
-#define kRGBA(R, G, B, A) [UIColor colorWithRed:(R) green:(G) blue:(B) alpha:(A)]
+#define kZTColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
+#define kZTRGBA(R, G, B, A) [UIColor colorWithRed:(R) green:(G) blue:(B) alpha:(A)]
 
-#define kScreenHeight [[UIScreen mainScreen] bounds].size.height
-#define kScreenWidth [[UIScreen mainScreen] bounds].size.width
+//#define kZTScreenHeight [[UIScreen mainScreen] bounds].size.height
+#define kZTScreenWidth [[UIScreen mainScreen] bounds].size.width
 
-#define kWeakSelf(x) __weak typeof(self) x = self
-#define kStrongSelf(x) __strong typeof(self) x = self 
+#define kZTWeakSelf(x) __weak typeof(self) x = self
+//#define kZTStrongSelf(x) __strong typeof(self) x = self
 
 #endif
 

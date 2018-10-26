@@ -136,6 +136,10 @@
     
     // 测试修改底部高度
 //    [[self titleView] setLayoutGuideBottom:100];
+    
+    // 测试修改标题文本样式
+//    [[self titleView] setTitleColor:[UIColor colorWithRed:0.86 green:0.23 blue:0.91 alpha:0.8]];
+//    [[self titleView] setTitleFont:[UIFont systemFontOfSize:16]];
 
     return;
 }

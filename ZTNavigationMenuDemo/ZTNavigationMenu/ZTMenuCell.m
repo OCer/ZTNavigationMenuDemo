@@ -41,9 +41,9 @@
     [button setBackgroundColor:[UIColor whiteColor]];
     [button setUserInteractionEnabled:NO];
     [[button titleLabel] setFont:[UIFont systemFontOfSize:16]];
-    [button setTitleColor:UIColorFromRGB(0x333333) forState:UIControlStateNormal];
-    [button setTitleColor:UIColorFromRGB(0x6DA67E) forState:UIControlStateSelected];
-    [button setTitleColor:UIColorFromRGB(0x6DA67E) forState:UIControlStateSelected | UIControlStateHighlighted];
+    [button setTitleColor:kZTColorFromRGB(0x333333) forState:UIControlStateNormal];
+    [button setTitleColor:kZTColorFromRGB(0x6DA67E) forState:UIControlStateSelected];
+    [button setTitleColor:kZTColorFromRGB(0x6DA67E) forState:UIControlStateSelected | UIControlStateHighlighted];
     [button setContentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter];
     [[self contentView] addSubview:button];
     [self setButton:button];
@@ -54,7 +54,7 @@
     }];
     
     UIView *line = [[UIView alloc] init];
-    [line setBackgroundColor:UIColorFromRGB(0xF2F2F2)];
+    [line setBackgroundColor:kZTColorFromRGB(0xF2F2F2)];
     [[self contentView] addSubview:line];
     [line mas_makeConstraints:^(MASConstraintMaker *make) {
         [make height].mas_equalTo(1);
