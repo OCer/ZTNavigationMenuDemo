@@ -68,8 +68,7 @@
         _titleFont = kZTDefaultTitleFont;
         _titleColor = kZTDefaultTitleColor;
         _effectStyle = UIBlurEffectStyleLight;
-        _showBackgroundView = YES;
-        _showEffectView = NO;
+        _style = ZTBackgroundStyleTranslucent;
         _tapBackgroundHidden = YES;
         _rotate = YES;
         _tempIndex = -1;
@@ -801,17 +800,21 @@
                 [[self imageView] setTransform:CGAffineTransformMakeRotation(M_PI)];
             }
             
-            if ([self isShowBackgroundView])
+            switch ([self style])
             {
-                if ([self isShowEffectView])
+                case ZTBackgroundStyleTranslucent:
+                    [backgroundView setBackgroundColor:kZTRGBA(0, 0, 0, 0.5f)];
+                    break;
+                    
+                case ZTBackgroundStyleEffect:
                 {
                     UIBlurEffect *effect = [UIBlurEffect effectWithStyle:[self effectStyle]];
                     [[self effectView] setEffect:effect];
                 }
-                else
-                {
-                    [backgroundView setBackgroundColor:kZTRGBA(0, 0, 0, 0.5f)];
-                }
+                    break;
+                    
+                default:
+                    break;
             }
             
             [[self collectionView] mas_remakeConstraints:^(MASConstraintMaker *make) {

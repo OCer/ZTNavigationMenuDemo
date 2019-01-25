@@ -35,10 +35,10 @@
     [self setTitleView:titleView];
     
     // 取消遮罩显示
-//    [titleView setShowBackgroundView:NO];
+//    [titleView setStyle:ZTBackgroundStyleNone];
     
     // 显示模糊视图
-//    [titleView setShowEffectView:YES];
+//    [titleView setStyle:ZTBackgroundStyleEffect];
     
     // 点击遮罩不隐藏
 //    [titleView setTapBackgroundHidden:NO];
@@ -130,8 +130,7 @@
 //    [[self titleView] setContentHeight:height];
     
     // 测试模糊类型
-//    [[self titleView] setShowBackgroundView:YES];
-//    [[self titleView] setShowEffectView:YES];
+//    [[self titleView] setStyle:ZTBackgroundStyleEffect];
 //    [[self titleView] setEffectStyle:UIBlurEffectStyleRegular];
     
     // 测试修改底部高度

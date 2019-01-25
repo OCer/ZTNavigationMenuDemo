@@ -8,6 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+typedef enum : NSUInteger
+{
+    ZTBackgroundStyleNone = 0,
+    ZTBackgroundStyleTranslucent,
+    ZTBackgroundStyleEffect
+} ZTBackgroundStyle;
+
 typedef void(^ZTNavigationMenuBlock)(NSArray<NSString *> *data, int index);
 
 @interface ZTNavigationMenu : UIControl
@@ -22,8 +29,7 @@ typedef void(^ZTNavigationMenuBlock)(NSArray<NSString *> *data, int index);
 @property(nonatomic, assign) int layoutGuideBottom;
 @property(nonatomic, assign) UIBlurEffectStyle effectStyle;
 @property(nonatomic, assign) CGFloat effectAlpha;
-@property(nonatomic, assign, getter=isShowBackgroundView) BOOL showBackgroundView;
-@property(nonatomic, assign, getter=isShowEffectView) BOOL showEffectView;
+@property(nonatomic, assign) ZTBackgroundStyle style;
 @property(nonatomic, assign, getter=isTapBackgroundHidden) BOOL tapBackgroundHidden;
 @property(nonatomic, assign, getter=isRotate) BOOL rotate;
 
