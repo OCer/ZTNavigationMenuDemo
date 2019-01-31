@@ -94,6 +94,11 @@
 //    return;
 //}
 
++ (BOOL)accessInstanceVariablesDirectly
+{
+    return NO;
+}
+
 + (void)load
 {
     [self exchangeMethod];
