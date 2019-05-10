@@ -136,6 +136,14 @@
 
 - (void)ex_removeFromSuperview
 {
+    if ([self superview] != nil)
+    {
+        if ([self VC] != [self getCurrentVC])
+        {
+            [self ex_removeFromSuperview];
+        }
+    }
+    
     return;
 }
 

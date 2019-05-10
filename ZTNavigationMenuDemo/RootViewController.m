@@ -8,6 +8,7 @@
 
 #import "RootViewController.h"
 #import "ZTNavigationMenu.h"
+#import "ViewController.h"
 #import "Masonry.h"
 
 @interface RootViewController ()
@@ -110,6 +111,11 @@
 
 - (void)barButtonCall
 {
+    // 测试跳转
+//    ViewController *VC = [[ViewController alloc] init];
+//    [[self titleView] hiddenNavigationMenu];
+//    [[self navigationController] pushViewController:VC animated:YES];
+    
     // 测试修改箭头图标
 //    [[self titleView] setRotate:NO];
 //    [[self titleView] updateImage:@"menu" andSize:CGSizeMake(19, 15)];
